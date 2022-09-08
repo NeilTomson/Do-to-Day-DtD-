@@ -4,6 +4,8 @@ fontcolor: #1cc19f
 #0f61a8
 #c16a1b
 2dd410
+
+text #72767dfc
 */
 
 
@@ -14,7 +16,7 @@ fontcolor: #1cc19f
 }
 .nav{
     height: 10vh;
-    background-color:#0f61a8 ;
+    background-color:#2f3136 ;
 }
 .container{
     height: 90vh ;
@@ -22,6 +24,7 @@ fontcolor: #1cc19f
     justify-content: center;
     text-align: center;
     width: 100%;
+    background-color:#36393f;
 
 }
 .form{
@@ -29,29 +32,31 @@ fontcolor: #1cc19f
     height: 80%;
     display: flex;
     flex-direction: column;
-
+    
     align-items: center;
 }
 .form .title{
+    color: #fff;
     padding-left: 5px;
     width: 75%;
     margin-top: 20px;
     background-color: transparent;
     height: 3rem;
-    border: 3px solid #6d6d6d;
+    border: 3px solid #2f3136;
 }
 .form .description{
+    color: rgb(219, 217, 217);
     padding: 5px;
     width: 80%;
     height: 50%;
     margin-top: 30px;
     background-color: transparent;
-    border: 3px solid rgb(109, 109, 109);
+    border: 3px solid #2f3136;
 }
 .form .submit{
     margin-top: 30px;
-    color:#FFF ;
-    background-color:#1cc19f ;
+    background-color:#2f3136;
+    color: #fff;
     padding: 20px 25px;
     width: 50%;
     border: none;
@@ -64,6 +69,53 @@ fontcolor: #1cc19f
     display: flex;
     flex-direction: column;
 }
-.list.item{
-    height: 250px;
+.list .ListTitle{
+    color: #fff;
+    margin-top: 20px;
+    text-transform: uppercase;
+    margin: 20px auto;
+    width: 200px;
+    border-bottom: 2px solid #fff;
+}
+
+.list .item{
+    color: #fff;
+    line-height: 2rem;
+    border-top: 2px solid #72767dfc;
+    background-color: transparent;
+    margin: 5px auto;
+    width: 80%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.list .itemTitle{
+    color: #fff;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.list .itemDescription{
+    padding-left: 25px;
+}
+.list .btn{
+    color: #fff;
+    margin: 5px auto;
+    padding: 10px 50px;
+    text-align: center;
+    border: none;
+    border-radius: 40px;
+}
+.list .button{
+    display: flex;
+    justify-content: center;
+}
+.list .finish{
+    background-color: #0fa819;   
+}
+.list .edit{
+    background-color: #0f61a8;
+}
+.list .delete{
+    background-color: #a8260f;
 }

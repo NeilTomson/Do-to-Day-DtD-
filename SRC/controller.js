@@ -1,77 +1,88 @@
 'use strict';
-const form=document.querySelector(".form");
-const title=document.querySelector(".title");
-const description=document.querySelector(".description");
+const form = document.querySelector(".form");
+const title = document.querySelector(".title");
+const description = document.querySelector(".description");
 const list = document.querySelector(".list")
-const teeendok=document.querySelector(".teendok")
-class Task{
-    constructor(titleV,descriptionV){
-        this.titleV=titleV;
-        this.descriptionV=descriptionV; 
+const ListTitle = document.querySelector(".ListTitle")
+const finish = document.querySelector(".finish")
+
+class Task {
+    constructor(titleV, descriptionV) {
+        this.titleV = titleV;
+        this.descriptionV = descriptionV;
     }
 }
 //const button = document.querySelector(".submit")
 //const Tasks={}
 
 
-class App{
-    tasks=[];
-    constructor(){
-
+class App {
+    tasks = [];
+    constructor() {
+        //get the data
+        this._getLocalStorage()
+        //get new data
         form.addEventListener('submit', this._newTask.bind(this));
-        
-    }     
-
-    _newTask(e){
-        e.preventDefault();
-        const titleV=title.value;
-        const descriptionV=description.value;
-        let task =new Task(titleV,descriptionV);
-        this.tasks.push(task);
-       // console.log(this.tasks)
-        this._createTasks(task)   
     }
-    _createTasks(task){
-        let html=`
+//    finish.addEventListener('submit', this._newTask.bind(this));
+
+    reset() {
+        localStorage.removeItem('workouts');
+        location.reload();
+      }
+    _newTask(e) {
+        e.preventDefault();
+        const titleV = title.value;
+        const descriptionV = description.value;
+        let task = new Task(titleV, descriptionV);
+        this.tasks.push(task);
+        // console.log(this.tasks)
+        this._renderTasks(task)
+        this._clear();
+        this._setLocalStorage()
+    }
+
+
+    _renderTasks(task) {
+        let html = `
         <div class="item">
-            <h1 class="itemTitle">${task.titleV}</h1>
+            <h1 class="itemTitle">${task.titleV}:</h1>
             <p class="itemDescription">${task.descriptionV}</p>
+            <div class=" button">
+                <button class="btn finish"> finish</button>
+                <button class="btn edit"> edit</button>
+                <button class="btn delete">delete</button    
+            </div>
         </div>
         
         `
-        console.log(task)
-        teeendok.insertAdjacentHTML('afterend', html);
+        //console.log(task)
+        ListTitle.insertAdjacentHTML('afterend', html);
+    }
+    _clear() {
+        title.value = "";
+        description.value = '';
     }
 
-    
-    
+
+    _setLocalStorage() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
+
+    _getLocalStorage() {
+        const data = JSON.parse(localStorage.getItem('tasks'));
+        console.log(data)
+        if (!data) return;
+
+        this.tasks = data;
+        console.log(data);
+        this.tasks.forEach(task => {
+            this._renderTasks(task);
+            
+        });
+    }
 }
+
+
+
 const app = new App();
-
-
-
-
-/*
-function log(){
-    let x =document.querySelector(".title").value;
-    let y =document.querySelector(".description").value;
-    console.log(x,y);
-    return x,y;
-}
-button.addEventListener("click",functiona)
-
-function doCreator(x,y){
-    const html=`
-    <div class="item">
-        <h1 class="itemTitle">${x}</h1>
-        <p class="itemDescription">${y} </p>
-        <button class="end">End</button>
-    </div>`;
-    const list=document.querySelector(".list")
-    list.insertAdjacentHTML("afterbegin",html)
-}
-
-function functiona(){
-    log();
-    doCreator();
-}*/
