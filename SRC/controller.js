@@ -1,15 +1,23 @@
+// class Id{
+//     id = (Date.now() + '').slice(-10);
+
+// }
+
+
 'use strict';
 const form = document.querySelector(".form");
 const title = document.querySelector(".title");
 const description = document.querySelector(".description");
 const list = document.querySelector(".list")
 const ListTitle = document.querySelector(".ListTitle")
-const finish = document.querySelector(".finish")
-
+//const finish = document.querySelectorAll(".finish")
 class Task {
-    constructor(titleV, descriptionV) {
+    constructor(id,titleV, descriptionV) {
+        this.id=id;
         this.titleV = titleV;
         this.descriptionV = descriptionV;
+
+          
     }
 }
 //const button = document.querySelector(".submit")
@@ -23,33 +31,35 @@ class App {
         this._getLocalStorage()
         //get new data
         form.addEventListener('submit', this._newTask.bind(this));
+        //window.addEventListener('load', this._c())
+        list.addEventListener('click', this.removeData.bind(this))
     }
-//    finish.addEventListener('submit', this._newTask.bind(this));
-
-    reset() {
-        localStorage.removeItem('workouts');
-        location.reload();
-      }
-    _newTask(e) {
+    
+    _c(){
+        console.log("helo")
+    }
+    
+      _newTask(e) {
         e.preventDefault();
         const titleV = title.value;
         const descriptionV = description.value;
-        let task = new Task(titleV, descriptionV);
+        let date = new Date();
+        let id = (Date.now() + '').slice(-10);
+        let task = new Task(id,titleV, descriptionV);
         this.tasks.push(task);
-        // console.log(this.tasks)
+        //console.log(this.tasks)
         this._renderTasks(task)
         this._clear();
         this._setLocalStorage()
+
     }
-
-
     _renderTasks(task) {
         let html = `
-        <div class="item">
+        <div class="item" id='${task.id}' data-id="${task.id}">
             <h1 class="itemTitle">${task.titleV}:</h1>
             <p class="itemDescription">${task.descriptionV}</p>
             <div class=" button">
-                <button class="btn finish"> finish</button>
+                <button class="btn finish" "> finish</button>
                 <button class="btn edit"> edit</button>
                 <button class="btn delete">delete</button    
             </div>
@@ -59,30 +69,40 @@ class App {
         //console.log(task)
         ListTitle.insertAdjacentHTML('afterend', html);
     }
-    _clear() {
-        title.value = "";
-        description.value = '';
-    }
-
-
     _setLocalStorage() {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
 
     _getLocalStorage() {
         const data = JSON.parse(localStorage.getItem('tasks'));
-        console.log(data)
+        //console.log(data)
         if (!data) return;
 
         this.tasks = data;
-        console.log(data);
+        //console.log(data);
         this.tasks.forEach(task => {
             this._renderTasks(task);
             
         });
     }
+    removeData(e){
+        const taksEL = e.target.closest('.item');
+        if (!taksEL) return;
+        const task = this.tasks.find(
+        taks => taks.id ===taksEL.dataset.id
+        );
+        const indexofTask =this.tasks.indexOf(task);
+        this.tasks.splice(indexofTask); 
+        const element = document.getElementById(task.id);
+        element.remove();
+        localStorage.clear();
+        this._getLocalStorage();
+        
+
+    }
+    _clear() {
+        title.value = "";
+        description.value = '';
+    }
 }
-
-
-
 const app = new App();
