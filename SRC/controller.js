@@ -1,16 +1,9 @@
-// class Id{
-//     id = (Date.now() + '').slice(-10);
-
-// }
-
-
 'use strict';
 const form = document.querySelector(".form");
 const title = document.querySelector(".title");
 const description = document.querySelector(".description");
 const list = document.querySelector(".list")
 const ListTitle = document.querySelector(".ListTitle")
-//const finish = document.querySelectorAll(".finish")
 class Task {
     constructor(id,titleV, descriptionV) {
         this.id=id;
@@ -20,8 +13,6 @@ class Task {
           
     }
 }
-//const button = document.querySelector(".submit")
-//const Tasks={}
 
 
 class App {
@@ -31,7 +22,6 @@ class App {
         this._getLocalStorage()
         //get new data
         form.addEventListener('submit', this._newTask.bind(this));
-        //window.addEventListener('load', this._c())
         list.addEventListener('click', this.removeData.bind(this))
     }
     
@@ -47,7 +37,6 @@ class App {
         let id = (Date.now() + '').slice(-10);
         let task = new Task(id,titleV, descriptionV);
         this.tasks.push(task);
-        //console.log(this.tasks)
         this._renderTasks(task)
         this._clear();
         this._setLocalStorage()
@@ -66,7 +55,6 @@ class App {
         </div>
         
         `
-        //console.log(task)
         ListTitle.insertAdjacentHTML('afterend', html);
     }
     _setLocalStorage() {
@@ -75,11 +63,9 @@ class App {
 
     _getLocalStorage() {
         const data = JSON.parse(localStorage.getItem('tasks'));
-        //console.log(data)
         if (!data) return;
 
         this.tasks = data;
-        //console.log(data);
         this.tasks.forEach(task => {
             this._renderTasks(task);
             
