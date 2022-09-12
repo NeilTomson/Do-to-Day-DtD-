@@ -1,4 +1,3 @@
-'use strict';
 const form = document.querySelector(".form");
 const title = document.querySelector(".title");
 const description = document.querySelector(".description");
@@ -8,13 +7,9 @@ class Task {
     constructor(id,titleV, descriptionV) {
         this.id=id;
         this.titleV = titleV;
-        this.descriptionV = descriptionV;
-
-          
+        this.descriptionV = descriptionV;          
     }
 }
-
-
 class App {
     tasks = [];
     constructor() {
@@ -23,12 +18,7 @@ class App {
         //get new data
         form.addEventListener('submit', this._newTask.bind(this));
         list.addEventListener('click', this.removeData.bind(this))
-    }
-    
-    _c(){
-        console.log("helo")
-    }
-    
+    }    
       _newTask(e) {
         e.preventDefault();
         const titleV = title.value;
@@ -42,13 +32,14 @@ class App {
         this._setLocalStorage()
 
     }
+
     _renderTasks(task) {
         let html = `
         <div class="item" id='${task.id}' data-id="${task.id}">
             <h1 class="itemTitle">${task.titleV}:</h1>
             <p class="itemDescription">${task.descriptionV}</p>
             <div class=" button">
-                <button class="btn finish" "> finish</button>
+                <button name="btn" class="btn finish" "> finish</button>
                 <button class="btn edit"> edit</button>
                 <button class="btn delete">delete</button    
             </div>
@@ -83,8 +74,6 @@ class App {
         element.remove();
         localStorage.clear();
         this._getLocalStorage();
-        
-
     }
     _clear() {
         title.value = "";
@@ -92,3 +81,14 @@ class App {
     }
 }
 const app = new App();
+
+
+
+//gyakorlas code
+// let a =document.getElementsByClassName("btn");
+// console.log(a);
+// const addbutton = document.createElement("div");
+// addbutton.classList.add('delete');
+// addbutton.innerHTML='<div>it is a div</div>';
+// list.prepend(addbutton);
+//form.append(addbutton);

@@ -131,5 +131,7 @@ text #72767dfc
     background-color: #0f61a8;
 }
 .list .delete{
+    height: 20px;
+    width: 20px;
     background-color: #a8260f;
 }
