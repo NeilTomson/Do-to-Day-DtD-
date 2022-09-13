@@ -5,6 +5,7 @@ const description = document.querySelector(".description");
 const list = document.querySelector(".list");
 const ListTitle = document.querySelector(".ListTitle");
 const newTask=document.querySelector(".newTask")
+const ListContainer=document.querySelector('.ListContainer')
 class Task {
     constructor(id,titleV, descriptionV) {
         this.id=id;
@@ -27,7 +28,8 @@ class App {
         this.toggle()
     }
     toggle(){
-        form.classList.toggle("dark");
+        form.classList.toggle("hide");
+        list.classList.toggle("useAll")
     
     }
 
@@ -50,14 +52,12 @@ class App {
             <h1 class="itemTitle">${task.titleV}:</h1>
             <p class="itemDescription">${task.descriptionV}</p>
             <div class=" button">
-                <button class="btn finish" "> finish</button>
-                <button class="btn edit"> edit</button>
-                <button class="btn delete">delete</button    
+                <button class="btn finish" "> finish</button>   
             </div>
         </div>
         
         `
-        ListTitle.insertAdjacentHTML('afterend', html);
+        ListContainer.insertAdjacentHTML("afterbegin",html)
     }
     _setLocalStorage() {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));

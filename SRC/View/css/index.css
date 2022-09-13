@@ -17,6 +17,16 @@ text #72767dfc
 .nav{
     height: 10vh;
     background-color:#2f3136 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav .btn{
+    background-color: #72767dfc;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
 }
 .container{
     height: 90vh ;
@@ -76,6 +86,30 @@ text #72767dfc
     margin: 20px auto;
     width: 200px;
     border-bottom: 2px solid #fff;
+}
+.hide{
+    display: none;
+}
+.useAll{
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+.useAll .ListContainer{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.useAll .ListContainer .item{
+    width: 40%;
+    height: 30%;
+    border:2px solid #72767dfc  ;
+    font-size: 15px;
+    border-radius: 20px;
 }
 
 .list .item{
