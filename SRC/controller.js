@@ -2,33 +2,26 @@
 const form = document.querySelector(".form");
 const title = document.querySelector(".title");
 const description = document.querySelector(".description");
-const list = document.querySelector(".list")
-const ListTitle = document.querySelector(".ListTitle")
+const list = document.querySelector(".list");
+const ListTitle = document.querySelector(".ListTitle");
+const newTask=document.querySelector(".newData")
 class Task {
     constructor(id,titleV, descriptionV) {
         this.id=id;
         this.titleV = titleV;
-        this.descriptionV = descriptionV;
-
-          
+        this.descriptionV = descriptionV;          
     }
 }
-
-
 class App {
     tasks = [];
     constructor() {
         //get the data
-        this._getLocalStorage()
+        this._getLocalStorage();
         //get new data
+        newTask.addEventListener("cick",this.openForm.bind(this))
         form.addEventListener('submit', this._newTask.bind(this));
-        list.addEventListener('click', this.removeData.bind(this))
+        list.addEventListener('click', this.removeData.bind(this));
     }
-    
-    _c(){
-        console.log("helo")
-    }
-    
       _newTask(e) {
         e.preventDefault();
         const titleV = title.value;
@@ -37,10 +30,9 @@ class App {
         let id = (Date.now() + '').slice(-10);
         let task = new Task(id,titleV, descriptionV);
         this.tasks.push(task);
-        this._renderTasks(task)
+        this._renderTasks(task);
         this._clear();
-        this._setLocalStorage()
-
+        this._setLocalStorage();
     }
     _renderTasks(task) {
         let html = `
@@ -83,8 +75,6 @@ class App {
         element.remove();
         localStorage.clear();
         this._getLocalStorage();
-        
-
     }
     _clear() {
         title.value = "";
