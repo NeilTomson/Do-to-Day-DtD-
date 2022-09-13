@@ -4,7 +4,7 @@ const title = document.querySelector(".title");
 const description = document.querySelector(".description");
 const list = document.querySelector(".list");
 const ListTitle = document.querySelector(".ListTitle");
-const newTask=document.querySelector(".newData")
+const newTask=document.querySelector(".newTask")
 class Task {
     constructor(id,titleV, descriptionV) {
         this.id=id;
@@ -18,10 +18,20 @@ class App {
         //get the data
         this._getLocalStorage();
         //get new data
-        newTask.addEventListener("cick",this.openForm.bind(this))
+        newTask.addEventListener("click",this.openForm.bind(this))
         form.addEventListener('submit', this._newTask.bind(this));
         list.addEventListener('click', this.removeData.bind(this));
     }
+    openForm(e){
+        e.preventDefault()
+        this.toggle()
+    }
+    toggle(){
+        form.classList.toggle("dark");
+    
+    }
+
+
       _newTask(e) {
         e.preventDefault();
         const titleV = title.value;
